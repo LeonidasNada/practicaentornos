@@ -1,5 +1,5 @@
 package Equipos;
 
-public class Equipo1 {
+public class jugador {
 
 }
