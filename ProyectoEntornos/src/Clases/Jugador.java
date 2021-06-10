@@ -96,7 +96,7 @@ public class Jugador {
 
 			Statement stmt = null;
 
-			String query = "select * from futbol";
+			String query = "select * from equipos";
 
 			try {
 
@@ -110,8 +110,20 @@ public class Jugador {
 
 				while (leer.next()) {
 
-				//	String equipo = leer.getInt(1);
-				//System.out.println("Equipo: " + equipo);
+					String IdEquipo = leer.getString(1);
+				System.out.println("IdEquipo: " + IdEquipo);
+				
+				System.out.println();
+				
+				String NombreEquipo = leer.getString(2);
+				System.out.println("NombreEquipo: " + NombreEquipo);
+				
+				System.out.println();
+				
+				String Categoria = leer.getString(3);
+				System.out.println("Categoria: " + Categoria);
+				
+				System.out.println();
 
 				}
 
@@ -131,7 +143,7 @@ public class Jugador {
 
 			Statement stmt = null;
 
-			String query = "select * from futbol";
+			String query = "select * from jugadores";
 
 			try {
 
@@ -147,24 +159,38 @@ public class Jugador {
 
 					int IdJugador = leer.getInt(1);
 					System.out.println("Id Jugador: " + IdJugador);
+					
+					System.out.println();
 
 					String DNI = leer.getString(2);
 					System.out.println("DNI: " + DNI);
+					
+					System.out.println();
 
 					String Nombre = leer.getString(3);
 					System.out.println("Nombre: " + Nombre);
+					
+					System.out.println();
 
 					String Apellidos = leer.getString(4);
 					System.out.println("Apellidos: " + Apellidos);
+					
+					System.out.println();
 
 					String Posicion = leer.getString(5);
 					System.out.println("Posicion: " + Posicion);
+					
+					System.out.println();
 
-					int EstadoFisico = leer.getInt(6);
+					String EstadoFisico = leer.getString(6);
 					System.out.println("Estado físico: " + EstadoFisico);
+					
+					System.out.println();
 
 					String Edad = leer.getString(7);
 					System.out.println("Edad: " + Edad);
+					
+					System.out.println();
 
 					int IdEquipo = leer.getInt(8);
 					System.out.println("IdEquipo: " + IdEquipo);
@@ -190,7 +216,7 @@ public class Jugador {
 
 			Statement stmt = null;
 
-			String query = "select * from futbol";
+			String query = "select * from equipos";
 
 			try {
 
@@ -206,45 +232,20 @@ public class Jugador {
 					
 		
 
-					int numeroInterno = leer.getInt(1);
-					System.out.println("Numero interno: " + numeroInterno);
-
-					escribe.write("numeroInterno;" + numeroInterno + "\n");
-
-					String marca = leer.getString(2);
-					System.out.println("Marca: " + marca);
-
-					escribe.write("Marca: " + marca + "\n");
-
-					String modelo = leer.getString(3);
-					System.out.println("Modelo: " + modelo);
-
-					escribe.write("Modelo: " + modelo + "\n");
-
-					String procesador = leer.getString(4);
-					System.out.println("Procesador: " + procesador);
-
-					escribe.write("Procesador: " + procesador + "\n");
-
-					String tipoMemoria = leer.getString(5);
-					System.out.println("Tipo de memória: " + tipoMemoria);
-
-					escribe.write("Tipo de memória: " + tipoMemoria + "\n");
-
-					int cantidadMemoria = leer.getInt(6);
-					System.out.println("Cantidad de memória: " + cantidadMemoria + "gb");
-
-					escribe.write("Cantidad de memória: " + cantidadMemoria + "gb" + "\n");
-
-					String ubicacion = leer.getString(7);
-					System.out.println("Ubicación: " + ubicacion);
-
-					escribe.write("Ubicación: " + ubicacion + "\n");
-
-					int numeroSerie = leer.getInt(8);
-					System.out.println("Número de serie: " + numeroSerie);
-
-					escribe.write("Número de serie: " + numeroSerie + "\n");
+					String IdEquipo = leer.getString(1);
+					System.out.println("IdEquipo: " + IdEquipo);
+					
+					escribe.write("IdEquipo:" + IdEquipo + "\n");
+					
+					String NombreEquipo = leer.getString(2);
+					System.out.println("NombreEquipo: " + NombreEquipo);
+					
+					escribe.write("Nombre Equipo:" + NombreEquipo + "\n");
+					
+					String Categoria = leer.getString(3);
+					System.out.println("Categoria: " + Categoria);
+					
+					escribe.write("Categoria:" + Categoria + "\n");
 
 				}
 				
@@ -261,13 +262,13 @@ public class Jugador {
 		}
 		
 
-		// Método Listado en TXT equipos
+		// Método Listado en TXT Jugadores
 
 		private static void listarJugadorestxt(Connection con, String BDNombre) throws SQLException {
 
 			Statement stmt = null;
 
-			String query = "select * from futbol";
+			String query = "select * from jugadores";
 
 			try {
 
@@ -283,45 +284,45 @@ public class Jugador {
 					
 		
 
-					int numeroInterno = leer.getInt(1);
-					System.out.println("Numero interno: " + numeroInterno);
+					int IdJugador = leer.getInt(1);
+					System.out.println("Id Jugador: " + IdJugador);
+					
+					escribe.write("Id Jugador:" + IdJugador + "\n");
 
-					escribe.write("numeroInterno;" + numeroInterno + "\n");
+					String DNI = leer.getString(2);
+					System.out.println("DNI: " + DNI);
+					
+					escribe.write("DNI:" + DNI + "\n");
 
-					String marca = leer.getString(2);
-					System.out.println("Marca: " + marca);
+					String Nombre = leer.getString(3);
+					System.out.println("Nombre: " + Nombre);
+					
+					escribe.write("Nombre:" + Nombre + "\n");
 
-					escribe.write("Marca: " + marca + "\n");
+					String Apellidos = leer.getString(4);
+					System.out.println("Apellidos: " + Apellidos);
+					
+					escribe.write("Apellidos:" + IdJugador + "\n");
 
-					String modelo = leer.getString(3);
-					System.out.println("Modelo: " + modelo);
+					String Posicion = leer.getString(5);
+					System.out.println("Posicion: " + Posicion);
+					
+					escribe.write("Posicion:" + Posicion + "\n");
 
-					escribe.write("Modelo: " + modelo + "\n");
+					String EstadoFisico = leer.getString(6);
+					System.out.println("Estado físico: " + EstadoFisico);
+					
+					escribe.write("Estado físico:" + EstadoFisico + "\n");
 
-					String procesador = leer.getString(4);
-					System.out.println("Procesador: " + procesador);
+					String Edad = leer.getString(7);
+					System.out.println("Edad: " + Edad);
+					
+					escribe.write("Edad:" + IdJugador + "\n");
 
-					escribe.write("Procesador: " + procesador + "\n");
-
-					String tipoMemoria = leer.getString(5);
-					System.out.println("Tipo de memória: " + tipoMemoria);
-
-					escribe.write("Tipo de memória: " + tipoMemoria + "\n");
-
-					int cantidadMemoria = leer.getInt(6);
-					System.out.println("Cantidad de memória: " + cantidadMemoria + "gb");
-
-					escribe.write("Cantidad de memória: " + cantidadMemoria + "gb" + "\n");
-
-					String ubicacion = leer.getString(7);
-					System.out.println("Ubicación: " + ubicacion);
-
-					escribe.write("Ubicación: " + ubicacion + "\n");
-
-					int numeroSerie = leer.getInt(8);
-					System.out.println("Número de serie: " + numeroSerie);
-
-					escribe.write("Número de serie: " + numeroSerie + "\n");
+					int IdEquipo = leer.getInt(8);
+					System.out.println("IdEquipo: " + IdEquipo);
+					
+					escribe.write("IdEquipo" + IdEquipo + "\n");
 
 				}
 				
