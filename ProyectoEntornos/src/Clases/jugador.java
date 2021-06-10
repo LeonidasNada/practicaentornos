@@ -1,4 +1,4 @@
-package Equipos;
+package Clases;
 
 public class jugador {
 	

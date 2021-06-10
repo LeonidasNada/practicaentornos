@@ -1,4 +1,4 @@
-package Administradores;
+package Clases;
 
 public class Administrador {
 
