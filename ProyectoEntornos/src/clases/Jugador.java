@@ -1,4 +1,4 @@
-package Clases;
+package clases;
 
 import java.io.FileWriter;
 import java.io.IOException;

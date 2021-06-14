@@ -1,3 +1,4 @@
+package clases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,8 +94,10 @@ public class Administrador {
 			
 			if (user.equals(userBase) && password.equals(passBase)) {
 				System.out.println("¡Ha iniciado sesión correctamente!");
+				
 			} else {
 				System.out.println("Su nombre de usuario o contraseña son incorrectos, vuelva a intentarlo...");
+				login(conn, "Futbol");
 			}
 
 		} catch (SQLException e) {
