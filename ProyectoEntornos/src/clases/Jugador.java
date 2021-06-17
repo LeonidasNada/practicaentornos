@@ -15,6 +15,7 @@ public class Jugador {
 	private String NombreEquipo;
 	private String Categoria;
 	private int IdJugador;
+	private String disponibilidad;
 	private String DNI;
 	private String Nombre;
 	private String Apellidos;
@@ -36,7 +37,14 @@ public class Jugador {
 
 			System.out.println("Eliga una opción");
 			System.out.println("1. Listar jugadores por equipo");
+			System.out.println("");
 			System.out.println("2. Listar todos los jugadores");
+			System.out.println("");
+			System.out.println("3. Modificar posicion del jugador");
+			System.out.println("");
+			System.out.println("4. Modificar estado fisico del jugador");
+			System.out.println("");
+			System.out.println("5. Modificar disponibilidad del jugador");
 			
 		
 
@@ -77,11 +85,24 @@ public class Jugador {
 				
 				break;
 
-			
 
-			default:
+				case 3:
+
+				modificarPosicion(conn,"Jugadores");
+
 				break;
-			}
+
+				case 4:
+
+				modificarEstadoFisico(conn,"Jugadores");
+
+				case 5:
+
+				modificarDisponibilidad(conn,"Jugadores");
+
+				default:
+				break;
+				}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -336,6 +357,119 @@ public class Jugador {
 				stmt.close();
 			}
 
+		}
+		
+		//Creamos el método modificarPosicion
+		private static void modificarPosicion(Connection con, String BDNombre) {
+
+		Statement stmt = null;
+		//Creamos el Scanner
+		Scanner entrada = new Scanner(System.in);
+		//Damos la opción al usuario de ingresa el id del jugador
+		System.out.println("Ingrese id del jugador: ");
+		int IdJugador = entrada.nextInt();
+		System.out.println("");
+
+		entrada.nextLine();
+		//Damos la opción al usuario de ingresar la ubicación
+		System.out.println("Ingrese posición: ");
+		String Posicion = entrada.nextLine();
+		System.out.println("");
+
+		//Creamos un try donde abrimos el flujo
+		try {
+
+		stmt = con.createStatement();
+		//Creamos un executo update para poder modificar los atributos
+		stmt.executeUpdate("UPDATE " + BDNombre + "l SET Posicion ='" + Posicion + "' "
+		+ " WHERE IdJugador = " + IdJugador + "");
+		//Ponemos un mensaje al usuario de que la ubicación ha sido cambiada correctamente
+		System.out.println("");
+		System.out.println("Se ha modificado correctamente la posicion del jugador");
+
+		//Cerramos flujo
+		stmt.close();
+
+		//Capturamos las excepciones "SQL"
+		} catch (SQLException e) {
+		printSQLException(e);
+		}
+
+		}
+
+		//Creamos el método modificarEstadFisico
+		private static void modificarEstadoFisico(Connection con, String BDNombre) {
+
+		Statement stmt = null;
+		//Creamos el Scanner
+		Scanner entrada = new Scanner(System.in);
+		//Damos la opción al usuario de ingresa el id del jugador
+		System.out.println("Ingrese id del jugador: ");
+		int IdJugador = entrada.nextInt();
+		System.out.println("");
+
+		entrada.nextLine();
+		//Damos la opción al usuario de ingresar la ubicación
+		System.out.println("Ingrese estado físico: ");
+		String EstadoFisico = entrada.nextLine();
+		System.out.println("");
+
+		//Creamos un try donde abrimos el flujo
+		try {
+
+		stmt = con.createStatement();
+		//Creamos un executo update para poder modificar los atributos
+		stmt.executeUpdate("UPDATE " + BDNombre + " SET EstadoFisico ='" + EstadoFisico + "' "
+		+ " WHERE IdJugador = " + IdJugador + "");
+		//Ponemos un mensaje al usuario de que la ubicación ha sido cambiada correctamente
+		System.out.println("");
+		System.out.println("Se ha modificado correctamente el estado físico");
+
+		//Cerramos flujo
+		stmt.close();
+
+		//Capturamos las excepciones "SQL"
+		} catch (SQLException e) {
+		printSQLException(e);
+		}
+
+		}
+
+		//Creamos el método modificarDisponibilidad
+		private static void modificarDisponibilidad(Connection con, String BDNombre) {
+
+		Statement stmt = null;
+		//Creamos el Scanner
+		Scanner entrada = new Scanner(System.in);
+		//Damos la opción al usuario de ingresa el id del jugador
+		System.out.println("Ingrese id del jugador: ");
+		int IdJugador = entrada.nextInt();
+		System.out.println("");
+
+		entrada.nextLine();
+		//Damos la opción al usuario de ingresar la ubicación
+		System.out.println("Ingrese disponibilidad: ");
+		String Disponibilidad = entrada.nextLine();
+		System.out.println("");
+
+		//Creamos un try donde abrimos el flujo
+		try {
+
+		stmt = con.createStatement();
+		//Creamos un executo update para poder modificar los atributos
+		stmt.executeUpdate("UPDATE " + BDNombre + " SET Disponibilidad ='" + Disponibilidad + "' "
+		+ " WHERE IdJugador = " + IdJugador + "");
+		//Ponemos un mensaje al usuario de que la ubicación ha sido cambiada correctamente
+		System.out.println("");
+		System.out.println("Se ha modificado correctamente la disponibilidad del jugador");
+
+		//Cerramos flujo
+		stmt.close();
+
+		//Capturamos las excepciones "SQL"
+		} catch (SQLException e) {
+		printSQLException(e);
+		}
 		}
 		
 		private static void printSQLException(SQLException ex) {
