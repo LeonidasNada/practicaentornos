@@ -1,119 +1,18 @@
-package clases;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
 public class Jugador {
-	
-	private int IdEquipo;
-	private String NombreEquipo;
-	private String Categoria;
-	private int IdJugador;
-	private String disponibilidad;
-	private String DNI;
-	private String Nombre;
-	private String Apellidos;
-	private String Posicion;
-	private String EstadoFisico;
-	private int Edad;
-	
-	
-	
-
-	public static void main(String[] args) {
-		
-		
-		Connection conn;
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
-			System.out.println("Conexión establecida correctamente con la base de datos");
-	
-
-			System.out.println("Eliga una opción");
-			System.out.println("1. Listar jugadores por equipo");
-			System.out.println("");
-			System.out.println("2. Listar todos los jugadores");
-			System.out.println("");
-			System.out.println("3. Modificar posicion del jugador");
-			System.out.println("");
-			System.out.println("4. Modificar estado fisico del jugador");
-			System.out.println("");
-			System.out.println("5. Modificar disponibilidad del jugador");
-			
-		
-
-			Scanner entrada = new Scanner(System.in);
-
-			int opcion = entrada.nextInt();
-
-			switch (opcion) {
-			case 1:
-				System.out.println("Eliga una opción");
-				System.out.println("1. Listar equipos");
-				System.out.println("2. Listar y Guardar TXT");
-				
-				int elige = entrada.nextInt();
-				if (elige == 1) {
-					listarEquipos(conn, "Ordenadores");
-				} else if(elige == 2) {
-					listarEquipostxt(conn, "Ordenadores");
-				} else {
-					System.out.println("Elige una opción valida");
-				}
-				
-				break;
-			
-			case 2:
-				System.out.println("Eliga una opción");
-				System.out.println("1. Listar Jugadores");
-				System.out.println("2. Listar y Guardar TXT");
-				
-				int elige1 = entrada.nextInt();
-				if (elige1 == 1) {
-					listarJugadores(conn, "Ordenadores");
-				} else if(elige1 == 2) {
-					listarJugadorestxt(conn, "Ordenadores");
-				} else {
-					System.out.println("Elige una opción valida");
-				}
-				
-				break;
 
 
-				case 3:
 
-				modificarPosicion(conn,"Jugadores");
+//Método Listar todos los equipos
 
-				break;
-
-				case 4:
-
-				modificarEstadoFisico(conn,"Jugadores");
-
-				case 5:
-
-				modificarDisponibilidad(conn,"Jugadores");
-
-				default:
-				break;
-				}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-	// Método Listar todos los equipos
-
-		private static void listarEquipos(Connection con, String BDNombre) throws SQLException {
+		public void listarEquipos(Connection con, String BDNombre) throws SQLException {
 
 			Statement stmt = null;
 
@@ -160,7 +59,7 @@ public class Jugador {
 		
 		// Método listar jugadores
 
-		private static void listarJugadores(Connection con, String BDNombre) throws SQLException {
+		public void listarJugadores(Connection con, String BDNombre) throws SQLException {
 
 			Statement stmt = null;
 
@@ -227,13 +126,10 @@ public class Jugador {
 
 		}
 		
-		
-		
-				
 
 		// Método Listado en TXT equipos
 
-		private static void listarEquipostxt(Connection con, String BDNombre) throws SQLException {
+		public void listarEquipostxt(Connection con, String BDNombre) throws SQLException {
 
 			Statement stmt = null;
 
@@ -285,7 +181,7 @@ public class Jugador {
 
 		// Método Listado en TXT Jugadores
 
-		private static void listarJugadorestxt(Connection con, String BDNombre) throws SQLException {
+		public void listarJugadorestxt(Connection con, String BDNombre) throws SQLException {
 
 			Statement stmt = null;
 
@@ -360,7 +256,7 @@ public class Jugador {
 		}
 		
 		//Creamos el método modificarPosicion
-		private static void modificarPosicion(Connection con, String BDNombre) {
+		public void modificarPosicion(Connection con, String BDNombre) {
 
 		Statement stmt = null;
 		//Creamos el Scanner
@@ -398,7 +294,7 @@ public class Jugador {
 		}
 
 		//Creamos el método modificarEstadFisico
-		private static void modificarEstadoFisico(Connection con, String BDNombre) {
+		public void modificarEstadoFisico(Connection con, String BDNombre) {
 
 		Statement stmt = null;
 		//Creamos el Scanner
@@ -436,7 +332,7 @@ public class Jugador {
 		}
 
 		//Creamos el método modificarDisponibilidad
-		private static void modificarDisponibilidad(Connection con, String BDNombre) {
+		public void modificarDisponibilidad(Connection con, String BDNombre) {
 
 		Statement stmt = null;
 		//Creamos el Scanner
@@ -457,7 +353,7 @@ public class Jugador {
 
 		stmt = con.createStatement();
 		//Creamos un executo update para poder modificar los atributos
-		stmt.executeUpdate("UPDATE " + BDNombre + " SET Disponibilidad ='" + Disponibilidad + "' "
+		stmt.executeUpdate("UPDATE " + BDNombre + " SET Disponibilidad ='" + Disponibilidad + "'"
 		+ " WHERE IdJugador = " + IdJugador + "");
 		//Ponemos un mensaje al usuario de que la ubicación ha sido cambiada correctamente
 		System.out.println("");
@@ -472,7 +368,7 @@ public class Jugador {
 		}
 		}
 		
-		private static void printSQLException(SQLException ex) {
+		public void printSQLException(SQLException ex) {
 
 			ex.printStackTrace(System.err);
 			System.err.println("SQLState: " + ex.getSQLState()); // getSQLState()
@@ -487,6 +383,6 @@ public class Jugador {
 			}
 
 		}
-	}
 
+}
 
