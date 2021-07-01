@@ -1,11 +1,20 @@
-import java.sql.*;
-import java.util.*;
+package main;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import clases.Administrador;
+import clases.Jugador;
+import clases.Plantilla;
 
 
 
 public class Principal {
 	
-	String apellidos;
+	public String apellidos;
 
 	public static void main(String[] args) throws SQLException {
 
@@ -41,6 +50,7 @@ public class Principal {
 			System.out.println("2. Menú de equipos");
 			System.out.println("3. Menú de plantilla");
 			System.out.println("4. Opciones de administrador");
+			System.out.println("5. Salir del programa");
 			System.out.println("");
 			System.out.print("Opción?: ");
 
@@ -70,7 +80,9 @@ public class Principal {
 
 				menuAdmin();
 				break;
-
+			case 5:
+				cerrarPrograma();
+				break;
 			default:
 				System.out.println("Porfavor, seleccione una de las opciones mostradas en el menú.");
 				menuPrincipal();
@@ -278,6 +290,7 @@ public class Principal {
 			System.out.println("1. Listar equipos");
 			System.out.println("2. Listar jugadores por equipo");
 			System.out.println("3. Mover jugador de equipo");
+			System.out.println("4. Volver atrás");
 			System.out.print("");
 			System.out.print("Opción?: ");
 
@@ -329,32 +342,18 @@ public class Principal {
 				jug.moverJugadorCategoria(conn, "Futbol");
 				
 				break;
-
 			case 4:
-
-				jug.modificarEstadoFisico(conn, "Jugadores");
-
-			case 5:
-
-				jug.modificarDisponibilidad(conn, "Jugadores");
-
+				menuPrincipal();
+				break;
 			default:
+				System.out.println("Debes seleccionar una opción válida del menú...");
+				System.out.println("");
+				menuPrincipal();
 				break;
 			}
 			
-			entrada.nextLine();
-			System.out.println("");
-			System.out.println("¿Desea volver al menú de equipos?");
-			String guardar = entrada.nextLine();
-			if (guardar.equals("S") || guardar.equals("s") || guardar.equals("si") || guardar.equals("SI")) {
-
-				menuEquipos();
-
-			} else  {
-				Principal prnc = new Principal();
-				prnc.menuPrincipal();
-			} 
-
+			//Al acabar volvemos al menú principal
+			menuPrincipal();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -592,6 +591,12 @@ public class Principal {
 			stmt.close();
 		}
 	}
+
+	
+	public static void cerrarPrograma() {
+		System.out.println("Gracias por utilizar Gestor equipos de futbol v1.0 ¡Hasta pronto!");
+		System.exit(0);
+	}	
 
 	public static void printSQLException(SQLException ex) {
 

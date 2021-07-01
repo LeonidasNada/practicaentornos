@@ -1,9 +1,12 @@
+package clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import main.Principal;
 
 public class Plantilla {
 
@@ -702,32 +705,6 @@ public class Plantilla {
 
 	}
 
-	public static void recuperarIdPlantilla(Connection conn, String BDNombre) throws SQLException {
-		
-		
-		Statement stmt = null;
-
-		try {
-
-			stmt = conn.createStatement();
-			int idPlantillaBase = 0;
-				String query = "select idPlantilla from Plantillas GROUP BY idPlantilla";
-				ResultSet leerIdPlantilla = stmt.executeQuery(query);
-
-				while (leerIdPlantilla.next()) {
-					idPlantillaBase = leerIdPlantilla.getInt(1);
-					
-				}
-
-		} catch (SQLException e) {
-			printSQLException(e);
-		} finally {
-			stmt.close();
-		}
-		
-		
-	}
-	
 	public static void obtNombreJugador(Connection conn, String BDNombre) throws SQLException {
 
 		Statement stmt = null;
@@ -737,7 +714,7 @@ public class Plantilla {
 		try {
 
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
-			// System.out.println("ConexiÃ³n establecida correctamente con la base de
+			// System.out.println("Conexión establecida correctamente con la base de
 			// datos");
 			stmt = conn.createStatement();
 

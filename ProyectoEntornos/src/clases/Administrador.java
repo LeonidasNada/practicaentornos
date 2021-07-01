@@ -1,9 +1,12 @@
+package clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import main.Principal;
 
 public class Administrador {
 
@@ -85,6 +88,8 @@ public class Administrador {
 			}
 
 		} catch (SQLException e) {
+			System.out.println("Ha habido un error con la ejecución de su consulta, vuelva a intentarlo...");
+			login();
 			printSQLException(e);
 		} finally {
 			stmt.close();
