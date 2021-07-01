@@ -56,19 +56,22 @@ public class Administrador {
 				prnc.apellidos = leer.getString(3);
 				//System.out.println(prnc.apellidos);
 
-				System.out.println("***************************************");
-				System.out.println("");
+				System.out.println("------------------------------------------------------------------------------------------------------");
 			}
 
 			if (user.equals(userBase) && password.equals(passBase)) {
+				System.out.println("");
+				System.out.println("//////////////////////////////////");
 				System.out.println("¡Ha iniciado sesión correctamente!");
+				System.out.println("//////////////////////////////////");
+				System.out.println("");
 				
-				try {
+			/*	try {
 		            //Ponemos a "Dormir" el programa durante los ms que queremos
 		            Thread.sleep(2*1000);
 		         } catch (Exception e) {
 		            System.out.println(e);
-		         }
+		         }*/
 				autenticacion = true;
 
 				comprobacionLogin(autenticacion);
@@ -87,7 +90,6 @@ public class Administrador {
 			stmt.close();
 		}
 
-		sca.close();
 	}
 
 	public void comprobacionLogin(boolean autenticacion) {
@@ -129,26 +131,28 @@ public class Administrador {
 		try {
 
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
-			System.out.println("Conexión establecida correctamente con la base de datos");
 			stmt = conn.createStatement();
 
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".Usuarios(Username, Password, Nombre, Apellidos) VALUES('"
 					+ usernameAdmin + "','" + passAdmin + "','" + nombreAdmin + "','" + apellidosAdmin + "')");
-
+			
+			System.out.println("");
+			System.out.println("¡Se ha creado el nuevo administrador! \nYa puede iniciar sesión con él...");
 		} catch (SQLException e) {
 			printSQLException(e);
+			System.out.println("Ha cometido un error al introducir alguno de los datos, vuelva a intentarlo...");
+			crearAdmin(conn, "Futbol");
 		} finally {
 			stmt.close();
 		}
 
-		sca.close();
 	}
 
 	public void eliminarAdmin(Connection conn, String BDNombre) throws SQLException {
 
 		Statement stmt = null;
 		Scanner sca = new Scanner(System.in);
-
+		verAdmins(conn, "Futbol");
 		System.out.println("Indique el ID del administrador que quiera eliminar: ");
 		int numeroInterno = sca.nextInt();
 		System.out.println("");
@@ -163,10 +167,11 @@ public class Administrador {
 			System.out.println("¡Se ha eliminado el administrador " + numeroInterno + "!");
 
 		} catch (SQLException e) {
+			System.out.println("Ha cometido un error al introducir alguno de los datos, vuelva a intentarlo... \nPosiblemente el id introducido no exista en la base de datos.");
+			crearAdmin(conn, "Futbol");
 			printSQLException(e);
 		} finally {
 			stmt.close();
-			sca.close();
 		}
 
 	}
@@ -257,12 +262,55 @@ public class Administrador {
 			printSQLException(e);
 		} finally {
 			stmt.close();
-			sca.close();
 		}
 
 	}
 
 	public void verAdmins(Connection conn, String BDNombre) throws SQLException{
+		
+		Statement stmt = null;
+
+		String query = "select * from usuarios";
+
+		try {
+
+			stmt = conn.createStatement();
+
+			ResultSet leer = stmt.executeQuery(query);
+
+			System.out.println("");
+			System.out.println("****************************************************");
+			System.out.println("*********** Listado de administradores *************");
+			System.out.println("****************************************************");
+			System.out.println("");
+
+			int numJugador = 1;
+
+			while (leer.next()) {
+				System.out.println("");
+				System.out.println("***********************");
+				System.out.println("*** Administrador " + numJugador + " ***");
+				System.out.println("***********************");
+				System.out.println("");
+				
+				int IdAdmin = leer.getInt(1);
+				System.out.println("Id administrador: " + IdAdmin);
+
+				String Nombre = leer.getString(4);
+				String apellido = leer.getString(5);
+				System.out.println("Nombre completo: " + Nombre + " " + apellido);
+
+				String username = leer.getString(2);
+				System.out.println("Nombre de usuario: " + username);
+
+				numJugador++;
+			}
+
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			stmt.close();
+		}
 		
 	} 
 	

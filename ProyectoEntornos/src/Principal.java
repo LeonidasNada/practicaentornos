@@ -28,19 +28,21 @@ public class Principal {
 
 	}
 
-	public void menuPrincipal() {
+	public static void menuPrincipal() {
 
-			System.out.println("***************************************************************");
-			System.out.println("******** ¡Bienvenido a nuestro programa! *********");
-			System.out.println("***************************************************************");
-			System.out.println("");
+		System.out.println("");
+		System.out.println("*************************");
+		System.out.println("*** Menú de principal ***");
+		System.out.println("*************************");
+		System.out.println("");
 			System.out.println("Indique a continuación qué desea hacer: ");
 			System.out.println("");
 			System.out.println("1. Menú de jugadores");
 			System.out.println("2. Menú de equipos");
 			System.out.println("3. Menú de plantilla");
 			System.out.println("4. Opciones de administrador");
-			System.out.print("");
+			System.out.println("");
+			System.out.print("Opción?: ");
 
 			Plantilla plnt = new Plantilla();
 
@@ -74,7 +76,6 @@ public class Principal {
 				menuPrincipal();
 				break;
 			}
-			entrada.close();
 
 
 	}
@@ -86,6 +87,10 @@ public class Principal {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
 			// System.out.println("ConexiÃ³n establecida correctamente con la base de
 			// datos");
+			System.out.println("");
+			System.out.println("***************************");
+			System.out.println("**** Menú de jugadores ****");
+			System.out.println("***************************");
 			System.out.println("");
 
 			System.out.println("Elija una opción:");
@@ -132,9 +137,9 @@ public class Principal {
 			case 2:
 
 				System.out.print("");
-				System.out.println("Elija una opciÃ³n:");
-				System.out.println("1. C.F. EDIB AlevÃ­n");
-				System.out.println("2. C.F. EDIB Infantil");
+				System.out.println("Elija una opción:");
+				System.out.println("1. C.F. EDIB Alevín");
+				System.out.println("2. C.F. EDIB Infantíl");
 				System.out.println("3. C.F. EDIB Cadete");
 
 				int elige = entrada.nextInt();
@@ -188,19 +193,7 @@ public class Principal {
 			default:
 				break;
 			}
-			
-			System.out.println("");
-			System.out.println("¿Desea volver al menú de jugadores?");
-			String guardar = entrada.nextLine();
-			if (guardar.equals("S") || guardar.equals("s") || guardar.equals("si") || guardar.equals("SI")) {
-
-				menuJugador();
-
-			} else  {
-				Principal prnc = new Principal();
-				prnc.menuPrincipal();
-			} 
-			entrada.close();
+			menuJugador();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,8 +206,11 @@ public class Principal {
 		Connection conn;
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
-			// System.out.println("ConexiÃ³n establecida correctamente con la base de
-			// datos");
+			
+			System.out.println("");
+			System.out.println("******************************");
+			System.out.println("*** Menú de administrrador ***");
+			System.out.println("******************************");
 			System.out.println("");
 
 			System.out.println("Elija una opción:");
@@ -223,6 +219,7 @@ public class Principal {
 			System.out.println("2. Eliminar administrador");
 			System.out.println("3. Modificar información del administrador");
 			System.out.println("4. Ver administradores existentes");
+			System.out.println("5. Volver atrás");
 			System.out.print("");
 
 			Administrador admin = new Administrador();
@@ -247,22 +244,15 @@ public class Principal {
 			case 4:
 				admin.verAdmins(conn, "Futbol");
 				break;
-
-			}
-			
-			entrada.nextLine();
-			System.out.println("");
-			System.out.println("¿Desea volver a las opciones de administrador?");
-			String guardar = entrada.nextLine();
-			if (guardar.equals("S") || guardar.equals("s") || guardar.equals("si") || guardar.equals("SI")) {
-
+			case 5:
+				menuPrincipal();
+				break;
+			default:
+				System.out.println("Porfavor, seleccione una de las opciones mostradas en el menú.");
 				menuAdmin();
-
-			} else  {
-				Principal prnc = new Principal();
-				prnc.menuPrincipal();
-			} 
-			entrada.close();
+				break;
+			}
+			menuAdmin();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -277,6 +267,10 @@ public class Principal {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/futbol", "root", "");
 			// System.out.println("ConexiÃ³n establecida correctamente con la base de
 			// datos");
+			System.out.println("");
+			System.out.println("***********************");
+			System.out.println("*** Menú de equipos ***");
+			System.out.println("***********************");
 			System.out.println("");
 
 			System.out.println("Elija una opciÃ³n:");
@@ -356,7 +350,6 @@ public class Principal {
 				prnc.menuPrincipal();
 			} 
 
-			entrada.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

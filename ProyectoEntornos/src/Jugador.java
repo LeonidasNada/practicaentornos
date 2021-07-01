@@ -60,10 +60,17 @@ public class Jugador {
 				String Edad = leer.getString(8);
 				System.out.println("Edad: " + Edad);
 
-				int IdEquipo = leer.getInt(9);
-				System.out.println("Id equipo: " + IdEquipo);
+				int idEquipo = leer.getInt(9);
+				
+				if (idEquipo == 1) {
+					System.out.println("Equipo: C.F. EDIB Alevín");
+					
+				} else if(idEquipo == 2) {
+					System.out.println("Equipo: C.F. EDIB Infantíl");
+				}else {
+					System.out.println("Equipo C.F. EDIB Cadete");
+				}
 				System.out.println("");
-
 				numJugador++;
 			}
 
@@ -112,7 +119,6 @@ public class Jugador {
 
 			}
 
-			escribe.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -185,7 +191,6 @@ public class Jugador {
 
 			}
 
-			escribe.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -271,7 +276,6 @@ public class Jugador {
 		} catch (SQLException e) {
 			printSQLException(e);
 		}
-		entrada.close();
 
 	}
 
@@ -311,7 +315,6 @@ public class Jugador {
 		} catch (SQLException e) {
 			printSQLException(e);
 		}
-		entrada.close();
 	}
 
 	// Métodos jugadores
@@ -368,7 +371,7 @@ public class Jugador {
 					+ disponibilidad + "','" + edad + "'," + idEquipo + ")");
 
 			System.out.println("");
-			System.out.println("¿Desea crear otro jugador?");
+			System.out.println("¿Desea crear otro jugador? \nIndique (si) en caso afirmativo o (no) en caso de no quiera: ");
 			String guardar = sca.nextLine();
 			if (guardar.equals("S") || guardar.equals("s") || guardar.equals("si") || guardar.equals("SI")) {
 
@@ -386,7 +389,6 @@ public class Jugador {
 			stmt.close();
 		}
 
-		sca.close();
 
 	}
 
@@ -431,7 +433,6 @@ public class Jugador {
 		} finally {
 			stmt.close();
 		}
-		sca.close();
 
 	}
 
@@ -564,7 +565,7 @@ public class Jugador {
 		}
 
 
-		
+		//Evitamos error del scanner
 		sca.nextLine();
 		try {
 
@@ -594,7 +595,6 @@ public class Jugador {
 			stmt.close();
 		}
 
-		sca.close();
 
 	}
 
@@ -665,7 +665,6 @@ public class Jugador {
 			stmt.close();
 		}
 
-		sca.close();
 		
 	}
 
