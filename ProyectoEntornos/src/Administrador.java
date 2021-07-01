@@ -149,7 +149,7 @@ public class Administrador {
 	}
 
 	public void eliminarAdmin(Connection conn, String BDNombre) throws SQLException {
-
+		verAdmins(conn, "Futbol");
 		Statement stmt = null;
 		Scanner sca = new Scanner(System.in);
 		verAdmins(conn, "Futbol");
@@ -178,6 +178,7 @@ public class Administrador {
 
 	public void modificarAdmin(Connection conn, String BDNombre) throws SQLException {
 
+		verAdmins(conn, "Futbol");
 		Statement stmt = null;
 		Scanner sca = new Scanner(System.in);
 		String query = "";
@@ -208,6 +209,7 @@ public class Administrador {
 
 			case 2:
 				System.out.println("");
+				sca.nextLine();
 				System.out.print("Ingrese la nueva contraseña: ");
 				String password = sca.nextLine();
 				query = "UPDATE "+ BDNombre +".usuarios SET Password='" + password + "' WHERE IdUsuario='" + numeroInterno + "'";
@@ -259,6 +261,8 @@ public class Administrador {
 			System.out.println("¡Se han modificado los datos del administrador " + numeroInterno + "!");
 
 		} catch (SQLException e) {
+			System.out.println("¡El Id de administrador elegido no existe, pruebe con otro!");
+			Principal.menuAdmin();
 			printSQLException(e);
 		} finally {
 			stmt.close();

@@ -209,7 +209,7 @@ public class Principal {
 			
 			System.out.println("");
 			System.out.println("******************************");
-			System.out.println("*** Menú de administrrador ***");
+			System.out.println("*** Menú de administrador ***");
 			System.out.println("******************************");
 			System.out.println("");
 
@@ -273,12 +273,13 @@ public class Principal {
 			System.out.println("***********************");
 			System.out.println("");
 
-			System.out.println("Elija una opciÃ³n:");
+			System.out.println("Elija una opción:");
 			System.out.println("");
 			System.out.println("1. Listar equipos");
 			System.out.println("2. Listar jugadores por equipo");
 			System.out.println("3. Mover jugador de equipo");
 			System.out.print("");
+			System.out.print("Opción?: ");
 
 			Jugador jug = new Jugador();
 
@@ -288,9 +289,11 @@ public class Principal {
 
 			switch (opcion) {
 			case 1:
-				System.out.println("Elija una opciÃ³n");
+				System.out.println("Elija una opción: ");
 				System.out.println("1. Listar equipos");
 				System.out.println("2. Listar y Guardar TXT");
+				System.out.println("");
+				System.out.print("Opción?: ");
 
 				int elige = entrada.nextInt();
 				if (elige == 1) {
@@ -298,30 +301,32 @@ public class Principal {
 				} else if (elige == 2) {
 					jug.listarEquipostxt(conn, "Futbol");
 				} else {
-					System.out.println("Elige una opciÃ³n valida");
+					System.out.println("Elige una opción valida");
 				}
 
 				break;
 
 			case 2:
-				System.out.println("Eliga una opciÃ³n");
+				System.out.println("Elija una opción");
 				System.out.println("1. Listar Jugadores");
 				System.out.println("2. Listar y Guardar TXT");
-
+				System.out.println("");
+				System.out.print("Opción?: ");
+				
 				int elige1 = entrada.nextInt();
 				if (elige1 == 1) {
 					jug.listarJugadores(conn, "Futbol");
 				} else if (elige1 == 2) {
 					jug.listarJugadorestxt(conn, "Futbol");
 				} else {
-					System.out.println("Elige una opciÃ³n valida");
+					System.out.println("Elige una opción valida");
 				}
 
 				break;
 
 			case 3:
 
-				System.out.println("AQUI VA EL MEDOTO PARA MODIFICAR LA POSICION DE LOS JUGADORES");
+				jug.moverJugadorCategoria(conn, "Futbol");
 				
 				break;
 

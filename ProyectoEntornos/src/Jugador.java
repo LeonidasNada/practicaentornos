@@ -408,7 +408,6 @@ public class Jugador {
 
 			stmt = conn.createStatement();
 
-			Principal prnc = new Principal();
 			stmt.executeUpdate("DELETE FROM " + BDNombre + ".Jugadores  WHERE " + "IdJugador =" + numeroInterno + " ");
 
 			System.out.println("");
@@ -423,7 +422,7 @@ public class Jugador {
 				eliminarJugador(conn, "Futbol");
 
 			} else if (guardar.equals("N") || guardar.equals("n") || guardar.equals("no") || guardar.equals("NO")) {
-				prnc.menuPrincipal();
+				Principal.menuPrincipal();
 			} else {
 				System.out.println("No sabemos qué quiere, así que ¡Hasta pronto!");
 			}
@@ -654,7 +653,7 @@ public class Jugador {
 				modificarJugador(conn, "Futbol");
 
 			} else if (guardar.equals("N") || guardar.equals("n") || guardar.equals("no") || guardar.equals("NO")) {
-				prnc.menuPrincipal();
+				Principal.menuPrincipal();
 			} else {
 				System.out.println("No sabemos qué quiere, así que ¡Hasta pronto!");
 			}
